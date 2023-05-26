@@ -12,7 +12,7 @@ $(function () {
   function time (){
     var currentDate = new dayjs();
     dateEl.text(currentDate.format('ddd, MMM D - h:mm:ss A'));
-    setState(currentDate.format('H') - 4);
+    setState(currentDate.format('H'));
   }
   
   function saveData (data){
@@ -31,10 +31,13 @@ $(function () {
   function setState(hour){
     for(var i = 9; i < 18; i++){
       if(i < hour){
+        hours.eq(i - 9).removeClass('present future');
         hours.eq(i - 9).addClass('past');
       }else if(i > hour){
+        hours.eq(i - 9).removeClass('past present');
         hours.eq(i - 9).addClass('future');
       }else{
+        hours.eq(i - 9).removeClass('past future');
         hours.eq(i - 9).addClass('present');
       }
     }
